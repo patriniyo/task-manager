@@ -1,11 +1,57 @@
-const express = require('express')
-const app = express()
-const port = 5000
+const express = require('express');
+const db = require("./config/dbconnection");
+const createUser = require('./controllers/users/createUser');
+const signin = require('./controllers/users/signin');
+const checkDuplicateUsername = require('./middleware/verifyusername');
 
+// Import the User model.
+const UserModel = require("./models/users");
+
+const bodyParser = require('body-parser')
+
+const app = express();
+const port = 5000;
+
+app.use(bodyParser.json());
+
+const initApp = async () => {
+  console.log("Testing the database connection..");
+
+  // Test the connection.
+  try {
+     await db.authenticate();
+     console.log("Connection has been established successfully.");
+     /**
+      * Start the web server on the specified port.
+      */
+
+     // Syncronize the User model.
+     UserModel.sync({ alter: true });
+
+     app.listen(port, () => {
+        console.log(`Server is running at: http://localhost:${port}`);
+     });
+  } catch (error) {
+     console.error("Unable to connect to the database:", error.original);
+  }
+};
+
+/**
+* Initialize the application.
+*/
+initApp();
+
+/**
+* Testing endpoints.
+*/
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+/** Endpoints **/
+
+// Sign up endpoint
+app.post('/api/auth/signup', checkDuplicateUsername, createUser);
+
+// Sign in endpoint
+app.post('/api/auth/sign', signin);
