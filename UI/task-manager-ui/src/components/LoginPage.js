@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     return (
@@ -15,7 +17,7 @@ const LoginPage = () => {
                         <p className="error-message" id="error-message-login"></p>
                         <input className="form__submit button button--green" value="Sign In" type="submit" name="sign-in-submit"/>
                     </form>
-                    <p className="sign-in-holder_p">Sign Up</p>
+                    <Link to="/signup" className="sign-in-holder_p">Sign Up</Link>
                 </div>
             </div>
         </div>
