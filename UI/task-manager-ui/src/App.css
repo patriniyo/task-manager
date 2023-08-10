@@ -265,6 +265,19 @@ margin-left: 2rem;
 	outline: none;
 }
 
+.button_tasks{
+    font-weight: 400;
+	font-size: 1.5rem;
+	border-radius: 1rem;
+	border: none;
+	color: #fff;
+	display: inline-block;
+    padding: 1rem 1.2rem;
+    font-family: inherit;
+    margin-left: 4.5rem;
+
+}
+
 /********* LAYOUT **************/
 /************ Header **********/
 header{
@@ -574,7 +587,7 @@ section{
 	text-align: center;
 	font-size: 1.1rem;
     color: #7f0414;
-    display: none;
+    /* display: none; */
 }
 .show-error-message{
     display: block;
@@ -676,3 +689,38 @@ section{
     font-size: 1.3rem;
     padding: 1rem;
 }
+/****************************Task Box*******************/
+.create_task_box{
+    margin: auto;
+    width: 600px;
+}
+.task_date_holder, .project_holder{
+    display: flex;
+    justify-content: space-between;
+}
+.start_date_box_outer, .end_date_box_outer{
+    width: 45%;
+}
+.projectname_holder{
+    width: 70%;
+}
+.add_button_holder{
+    width: 25%;
+}
+
+.priority_holder label {
+    display: inline;
+    margin-left: 30px;
+    font-size: 16px;
+  }
+
+  .priority_holder input[type="radio"] {
+    transform: scale(1.5); 
+    margin-right: 8px;
+    display: inline;
+  }
+  .button_holder{
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-between;
+  }

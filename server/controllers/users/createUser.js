@@ -14,12 +14,14 @@ const createUser = (req, res) => {
   })
   .then((result) => {
       return res.json({
+        success: true,
           message: "User created successfully!",
       });
   })
   .catch((error) => {
       console.log(error);
       return res.json({
+        success: false,
           message: "User to create a record!",
       });
   });

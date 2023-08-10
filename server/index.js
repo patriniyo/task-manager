@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors'); // Import the cors package
 const db = require("./config/dbconnection");
 const createUser = require('./controllers/users/createUser');
 const signin = require('./controllers/users/signin');
@@ -13,6 +14,14 @@ const app = express();
 const port = 5000;
 
 app.use(bodyParser.json());
+
+// Use the cors middleware
+app.use(cors({
+  origin: 'http://localhost:3000', // Change this to your frontend's origin
+  credentials: true,
+}));
+
+
 
 const initApp = async () => {
   console.log("Testing the database connection..");
